@@ -155,6 +155,7 @@
             text-align: center;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
             transition: transform 0.3s ease-in-out;
+            cursor: pointer;
         }
 
         .profile-box:hover {
@@ -254,6 +255,10 @@
                 `;
 
                 box.innerHTML = profileBoxContent;
+                box.onclick = function() {
+                    searchUsername(profile);
+                };
+
                 listContainer.appendChild(box);
             });
         }
@@ -321,7 +326,103 @@
             searchUsername();
         }
 
-        // Initially update the most searched profiles list
+        function generateMinecraftSeed() {
+            document.getElementById('featureResult').innerHTML = "Here’s a Minecraft Seed: 1234567890";
+        }
+
+        function generateHypixelRank() {
+            document.getElementById('featureResult').innerHTML = "Here’s a random Hypixel Rank: MVP+";
+        }
+
+        function generateWorldName() {
+            document.getElementById('featureResult').innerHTML = "Your random world name is: DragonCavern";
+        }
+
+        function generateBlockRecipe() {
+            document.getElementById('featureResult').innerHTML = "Here's a random Block Recipe: Crafting Table (Wood + Wood)";
+        }
+
+        function generateMob() {
+            document.getElementById('featureResult').innerHTML = "Here's a random Minecraft Mob: Creeper";
+        }
+
+        function generatePotion() {
+            document.getElementById('featureResult').innerHTML = "Here’s a random Potion: Healing Potion (Glistering Melon + Water Bottle)";
+        }
+
+        function generateServer() {
+            document.getElementById('featureResult').innerHTML = "Here’s a random Minecraft Server:  play.mcs.com";
+        }
+
+        function generateHerobrineStory() {
+            document.getElementById('featureResult').innerHTML = "Herobrine appeared at midnight, and the world was never the same again...";
+        }
+
+        function generateChatMessage() {
+            document.getElementById('featureResult').innerHTML = "Random Chat Message: ‘Hello world!’";
+        }
+
+        function generateAchievement() {
+            document.getElementById('featureResult').innerHTML = "Achievement Unlocked: ‘Master Miner’";
+        }
+
+        function generateSkinEditor() {
+            document.getElementById('featureResult').innerHTML = "Open Skin Editor Tool!";
+        }
+
+        function generateMusicDisc() {
+            document.getElementById('featureResult').innerHTML = "Here’s a random Music Disc: 13";
+        }
+
+        function generateStructure() {
+            document.getElementById('featureResult').innerHTML = "Here’s a random Minecraft Structure: Village";
+        }
+
+        function checkItemDurability() {
+            document.getElementById('featureResult').innerHTML = "Item Durability: 52/64";
+        }
+
+        function generateRandomSeed() {
+            document.getElementById('featureResult').innerHTML = "Your random seed is: 4567891230";
+        }
+
+        function generateCreeperFace() {
+            document.getElementById('featureResult').innerHTML = "Here's a Creeper Face pattern!";
+        }
+
+        function generateRecipeForDisaster() {
+            document.getElementById('featureResult').innerHTML = "Recipe for Disaster: TNT + Flint and Steel";
+        }
+
+        function generateMinecraftPet() {
+            document.getElementById('featureResult').innerHTML = "Your Minecraft Pet: A Wolf!";
+        }
+
+        function generateMinecraftFact() {
+            document.getElementById('featureResult').innerHTML = "Minecraft Fact: The first Minecraft seed was 0!";
+        }
+
+        function generateRandomTexture() {
+            document.getElementById('featureResult').innerHTML = "Here’s a random Minecraft texture!";
+        }
+
+        function generateQuest() {
+            document.getElementById('featureResult').innerHTML = "Your Minecraft Quest: Build a Castle!";
+        }
+
+        function generateNameTag() {
+            document.getElementById('featureResult').innerHTML = "Your Name Tag: ‘TheLegend’";
+        }
+
+        function generateAntiCheat() {
+            document.getElementById('featureResult').innerHTML = "Minecraft Anticheat: Free!";
+        }
+
+        function freeMinecraftCheat() {
+            document.getElementById('featureResult').innerHTML = "Free Minecraft Cheat!";
+        }
+
+        // Initial load of the most searched profiles
         updateMostSearched();
     </script>
 </body>
