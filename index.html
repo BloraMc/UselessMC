@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UselessMC</title>
+    <style>
+        body {
+            font-family: 'Press Start 2P', cursive;
+            background: linear-gradient(135deg, #ff69b4, #1e1e2f);
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+            overflow: auto;
+            gap: 20px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            text-shadow: 2px 2px 8px #000;
+            margin-bottom: 20px;
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px #ff69b4, 0 0 10px #ff69b4;
+            }
+            to {
+                text-shadow: 0 0 20px #ff69b4, 0 0 30px #ff1493;
+            }
+        }
+
+        .search-bar {
+            margin: 20px 0;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            width: 50%;
+        }
+
+        .search-bar input {
+            font-size: 1.2rem;
+            padding: 10px;
+            border: 2px solid #ff69b4;
+            border-radius: 5px;
+            background: #1e1e2f;
+            color: #fff;
+            flex-grow: 1;
+        }
+
+        .search-bar button {
+            font-size: 1.2rem;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: #ff69b4;
+            color: #fff;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .search-bar button:hover {
+            background: #ff1493;
+            transform: scale(1.1);
+        }
+
+        .results {
+            margin-top: 20px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .skin img, .cape img {
+            width: 150px;
+            height: 300px;
+            border: 2px solid #ff69b4;
+            border-radius: 10px;
+        }
+
+        .joke-section {
+            margin-top: 40px;
+            font-size: 1.2rem;
+            color: #ffdf00;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+            width: 80%;
+            max-width: 1000px;
+        }
+
+        .joke-section button {
+            font-size: 1.2rem;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: #ff69b4;
+            color: #fff;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .joke-section button:hover {
+            background: #ff1493;
+            transform: scale(1.1);
+        }
+
+        .bio {
+            margin-top: 20px;
+            font-size: 1.1rem;
+            color: #fff;
+            text-align: center;
+        }
+
+        .creator-label {
+            font-weight: bold;
+            font-size: 1.3rem;
+            color: #ff69b4;
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>UselessMC</h1>
+    <div class="search-bar">
+        <input type="text" id="username" placeholder="Enter Minecraft Username">
+        <button onclick="searchUsername()">Search</button>
+        <button onclick="randomSkin()">Random Skin</button>
+    </div>
+
+    <div class="results" id="results"></div>
+
+    <div class="joke-section">
+        <button onclick="generateMinecraftSeed()">Minecraft Seed Creator</button>
+        <button onclick="generateHypixelRank()">Free Hypixel Rank Generator</button>
+        <button onclick="generateWorldName()">Random World Name Generator</button>
+        <button onclick="generateBlockRecipe()">Random Block Recipe</button>
+        <button onclick="generateMob()">Minecraft Mob Randomizer</button>
+        <button onclick="generatePotion()">Minecraft Potion Generator</button>
+        <button onclick="generateServer()">Minecraft Server Finder</button>
+        <button onclick="generateHerobrineStory()">Herobrine Encounter</button>
+        <button onclick="generateChatMessage()">Minecraft Chat Generator</button>
+        <button onclick="generateAchievement()">Minecraft Achievement Generator</button>
+        <button onclick="generateSkinEditor()">Minecraft Skin Editor</button>
+        <button onclick="generateMusicDisc()">Minecraft Music Disc Generator</button>
+        <button onclick="generateStructure()">Minecraft Structure Generator</button>
+        <button onclick="checkItemDurability()">Minecraft Item Durability Checker</button>
+        <button onclick="generateRandomSeed()">Minecraft World Seed Generator</button>
+        <button onclick="generateCreeperFace()">Minecraft Creeper Face Generator</button>
+        <button onclick="generateRecipeForDisaster()">Minecraft Recipe for Disaster</button>
+        <button onclick="generateMinecraftPet()">Minecraft Animal Pet Generator</button>
+        <button onclick="generateMinecraftFact()">Minecraft Fact Generator</button>
+        <button onclick="generateRandomTexture()">Random Minecraft Textures</button>
+        <button onclick="generateQuest()">Minecraft Quest Generator</button>
+        <button onclick="generateNameTag()">Minecraft Name Tag Generator</button>
+        <button onclick="generateAntiCheat()">FREE MINECRAFT ANTICHEAT GENERATOR CLICK HERE</button>
+    </div>
+
+    <script>
+        function searchUsername() {
+            const username = document.getElementById('username').value || `Player${Math.floor(Math.random() * 10000)}`;
+            const resultsDiv = document.getElementById('results');
+            const randomSeed = Math.floor(Math.random() * 10000000000);
+
+            const bios = [
+                "Minecraft enthusiast who loves building castles.",
+                "A dedicated survival player who has conquered every biome.",
+                "A redstone expert who can build anything!",
+                "Master of building and exploring the world of Minecraft.",
+                "Famous for their epic survival adventures!"
+            ];
+
+            const bio = username.toLowerCase() === "bloramc" ? 
+                "Considered the greatest Minecraft player - Creator of UselessMC" :
+                bios[Math.floor(Math.random() * bios.length)];
+
+            const fakeStats = `
+                <div class="fake-stats">
+                    <p><strong>Blocks Mined:</strong> ${Math.floor(Math.random() * 100000000) + 180000000}</p>
+                    <p><strong>Deaths by Creeper:</strong> ${Math.floor(Math.random() * 200000000) + 850000000}</p>
+                    <p><strong>Favorite Biome:</strong> Mushroom Island</p>
+                </div>
+            `;
+
+            const isBloraMc = /bloramc/i.test(username);
+            const creatorLabel = isBloraMc ? "<strong>UselessMC's Creator</strong>" : "";
+
+            resultsDiv.innerHTML = `
+                <div class="skin">
+                    <p>Skin:</p>
+                    <img src="https://mc-heads.net/body/${username}" alt="${username}'s Skin">
+                </div>
+                <div class="cape">
+                    <p>Cape:</p>
+                    <img src="https://mc-heads.net/cape/${username}" alt="${username}'s Cape">
+                </div>
+                <div class="random-seed">
+                    <strong>Random Seed:</strong> ${randomSeed}
+                </div>
+                <div class="bio">
+                    <strong>Bio:</strong> ${bio}
+                </div>
+                <div class="creator-label">
+                    ${creatorLabel}
+                </div>
+                ${fakeStats}
+            `;
+        }
+
+        function randomSkin() {
+            searchUsername();
+        }
+    </script>
+</body>
+</html>
