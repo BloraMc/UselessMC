@@ -132,42 +132,58 @@
             text-align: center;
         }
 
-        /* Modal style */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-content {
-            background: #1e1e2f;
-            color: white;
-            padding: 20px;
-            border-radius: 10px;
-            width: 60%;
+        .most-searched {
+            margin-top: 40px;
+            font-size: 1.2rem;
+            color: #ff69b4;
             text-align: center;
+            width: 100%;
         }
 
-        .modal-content button {
-            background: #ff69b4;
+        .most-searched-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .profile-box {
+            background: #2e2e3a;
+            border-radius: 10px;
+            padding: 20px;
+            width: 200px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .profile-box:hover {
+            transform: scale(1.05);
+        }
+
+        .profile-box img {
+            border-radius: 10px;
+            width: 100px;
+            height: 100px;
+        }
+
+        .profile-box .tag {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #ff69b4;
+        }
+
+        .profile-box .username {
+            margin-top: 10px;
+            font-size: 1.2rem;
             color: #fff;
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
-            margin-top: 20px;
-            cursor: pointer;
         }
 
-        .modal-content button:hover {
-            background: #ff1493;
+        .profile-box .bio {
+            font-size: 1rem;
+            margin-top: 10px;
+            color: #ffdf00;
         }
-
     </style>
 </head>
 <body>
@@ -179,6 +195,12 @@
     </div>
 
     <div class="results" id="results"></div>
+
+    <!-- Most Searched Profiles -->
+    <div class="most-searched">
+        <h2>Most Searched Profiles</h2>
+        <div class="most-searched-container" id="mostSearchedList"></div>
+    </div>
 
     <div class="joke-section">
         <button onclick="generateMinecraftSeed()">Minecraft Seed Creator</button>
@@ -209,17 +231,44 @@
 
     <div id="featureResult" class="feature-result"></div>
 
-    <!-- Modal for Profile -->
-    <div id="profileModal" class="modal">
-        <div class="modal-content">
-            <div id="profileContent"></div>
-            <button onclick="closeProfile()">Close</button>
-        </div>
-    </div>
-
     <script>
-        function searchUsername() {
-            const username = document.getElementById('username').value || `Player${Math.floor(Math.random() * 10000)}`;
+        let mostSearchedProfiles = ["BloraMc"];
+
+        function updateMostSearched() {
+            const listContainer = document.getElementById('mostSearchedList');
+            listContainer.innerHTML = ''; // Clear current list
+
+            // Create profile boxes for each profile
+            mostSearchedProfiles.forEach((profile) => {
+                const box = document.createElement('div');
+                box.classList.add('profile-box');
+
+                const tag = profile.toLowerCase() === 'bloramc' ? "<span class='tag'>[Owner]</span>" : "";
+                const bio = profile.toLowerCase() === 'bloramc' ? "UselessMC's Creator" : "Minecraft Player";
+
+                const profileBoxContent = `
+                    <img src="https://mc-heads.net/body/${profile}" alt="${profile}'s Skin">
+                    <div class="username">${profile}</div>
+                    ${tag}
+                    <div class="bio">${bio}</div>
+                `;
+
+                box.innerHTML = profileBoxContent;
+                listContainer.appendChild(box);
+            });
+        }
+
+        function searchUsername(username) {
+            if (!username) {
+                username = document.getElementById('username').value || `Player${Math.floor(Math.random() * 10000)}`;
+            }
+
+            // Add the username to the most searched list if it's not already there
+            if (!mostSearchedProfiles.includes(username)) {
+                mostSearchedProfiles.push(username);
+                updateMostSearched();
+            }
+
             const resultsDiv = document.getElementById('results');
             const randomSeed = Math.floor(Math.random() * 10000000000);
 
@@ -235,7 +284,7 @@
                 "Considered the greatest Minecraft player - Creator of UselessMC" :
                 bios[Math.floor(Math.random() * bios.length)];
 
-            const fakeStats = ` 
+            const fakeStats = `
                 <div class="fake-stats">
                     <p><strong>Blocks Mined:</strong> ${Math.floor(Math.random() * 100000000) + 180000000}</p>
                     <p><strong>Deaths by Creeper:</strong> ${Math.floor(Math.random() * 200000000) + 850000000}</p>
@@ -246,7 +295,7 @@
             const isBloraMc = /bloramc/i.test(username);
             const creatorLabel = isBloraMc ? "<strong>UselessMC's Creator</strong>" : "";
 
-            const profileContent = `
+            resultsDiv.innerHTML = `
                 <div class="skin">
                     <p>Skin:</p>
                     <img src="https://mc-heads.net/body/${username}" alt="${username}'s Skin">
@@ -266,114 +315,14 @@
                 </div>
                 ${fakeStats}
             `;
-
-            document.getElementById('profileContent').innerHTML = profileContent;
-            document.getElementById('profileModal').style.display = "flex";
-        }
-
-        function closeProfile() {
-            document.getElementById('profileModal').style.display = "none";
         }
 
         function randomSkin() {
             searchUsername();
         }
 
-        function generateMinecraftSeed() {
-            document.getElementById('featureResult').innerHTML = "Minecraft Seed Created: " + Math.floor(Math.random() * 10000000000);
-        }
-
-        function generateHypixelRank() {
-            document.getElementById('featureResult').innerHTML = "Your Hypixel Rank: MVP+";
-        }
-
-        function generateWorldName() {
-            document.getElementById('featureResult').innerHTML = "Random World Name: AdventureTimeWorld";
-        }
-
-        function generateBlockRecipe() {
-            document.getElementById('featureResult').innerHTML = "Block Recipe: 3x Iron -> Iron Block";
-        }
-
-        function generateMob() {
-            document.getElementById('featureResult').innerHTML = "Minecraft Mob: Zombie";
-        }
-
-        function generatePotion() {
-            document.getElementById('featureResult').innerHTML = "Potion: Healing Potion";
-        }
-
-        function generateServer() {
-            document.getElementById('featureResult').innerHTML = "Server: Hypixel";
-        }
-
-        function generateHerobrineStory() {
-            document.getElementById('featureResult').innerHTML = "Herobrine Story: The Legend of Herobrine!";
-        }
-
-        function generateChatMessage() {
-            document.getElementById('featureResult').innerHTML = "Chat Message: Hello, world!";
-        }
-
-        function generateAchievement() {
-            document.getElementById('featureResult').innerHTML = "Achievement Unlocked: Miner!";
-        }
-
-        function generateSkinEditor() {
-            document.getElementById('featureResult').innerHTML = "Skin Editor: Customize your skin!";
-        }
-
-        function generateMusicDisc() {
-            document.getElementById('featureResult').innerHTML = "Music Disc: Cat";
-        }
-
-        function generateStructure() {
-            document.getElementById('featureResult').innerHTML = "Structure: Village";
-        }
-
-        function checkItemDurability() {
-            document.getElementById('featureResult').innerHTML = "Item Durability: 75%";
-        }
-
-        function generateRandomSeed() {
-            document.getElementById('featureResult').innerHTML = "Random Seed: " + Math.floor(Math.random() * 10000000000);
-        }
-
-        function generateCreeperFace() {
-            document.getElementById('featureResult').innerHTML = "Creeper Face:  ☠️ ";
-        }
-
-        function generateRecipeForDisaster() {
-            document.getElementById('featureResult').innerHTML = "Recipe: TNT + Flammable Block = BOOM!";
-        }
-
-        function generateMinecraftPet() {
-            document.getElementById('featureResult').innerHTML = "Minecraft Pet: Dog";
-        }
-
-        function generateMinecraftFact() {
-            document.getElementById('featureResult').innerHTML = "Minecraft Fact: Did you know that Minecraft's world generation algorithm is based on noise functions?";
-        }
-
-        function generateRandomTexture() {
-            document.getElementById('featureResult').innerHTML = "Random Texture: Grass Block";
-        }
-
-        function generateQuest() {
-            document.getElementById('featureResult').innerHTML = "Quest: Find the End Portal!";
-        }
-
-        function generateNameTag() {
-            document.getElementById('featureResult').innerHTML = "Name Tag: Steve";
-        }
-
-        function generateAntiCheat() {
-            document.getElementById('featureResult').innerHTML = "Anti-Cheat Generator: Deactivated!";
-        }
-
-        function freeMinecraftCheat() {
-            document.getElementById('featureResult').innerHTML = "Bro, why did you click? Don't cheat!";
-        }
+        // Initially update the most searched profiles list
+        updateMostSearched();
     </script>
 </body>
 </html>
