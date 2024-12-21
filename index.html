@@ -124,6 +124,13 @@
             text-align: center;
             margin-top: 10px;
         }
+
+        .feature-result {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #ffdf00;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -160,7 +167,10 @@
         <button onclick="generateQuest()">Minecraft Quest Generator</button>
         <button onclick="generateNameTag()">Minecraft Name Tag Generator</button>
         <button onclick="generateAntiCheat()">FREE MINECRAFT ANTICHEAT GENERATOR CLICK HERE</button>
+        <button onclick="freeMinecraftCheat()">Free Minecraft Cheat</button>
     </div>
+
+    <div id="featureResult" class="feature-result"></div>
 
     <script>
         function searchUsername() {
@@ -215,6 +225,102 @@
 
         function randomSkin() {
             searchUsername();
+        }
+
+        function generateMinecraftSeed() {
+            document.getElementById('featureResult').innerHTML = "Minecraft Seed Created: " + Math.floor(Math.random() * 10000000000);
+        }
+
+        function generateHypixelRank() {
+            document.getElementById('featureResult').innerHTML = "Your Hypixel Rank: MVP+";
+        }
+
+        function generateWorldName() {
+            document.getElementById('featureResult').innerHTML = "Random World Name: AdventureTimeWorld";
+        }
+
+        function generateBlockRecipe() {
+            document.getElementById('featureResult').innerHTML = "Block Recipe: 3x Iron -> Iron Block";
+        }
+
+        function generateMob() {
+            document.getElementById('featureResult').innerHTML = "Minecraft Mob: Zombie";
+        }
+
+        function generatePotion() {
+            document.getElementById('featureResult').innerHTML = "Potion: Healing Potion";
+        }
+
+        function generateServer() {
+            document.getElementById('featureResult').innerHTML = "Server: Hypixel";
+        }
+
+        function generateHerobrineStory() {
+            document.getElementById('featureResult').innerHTML = "Herobrine Story: The Legend of Herobrine!";
+        }
+
+        function generateChatMessage() {
+            document.getElementById('featureResult').innerHTML = "Chat Message: Hello, world!";
+        }
+
+        function generateAchievement() {
+            document.getElementById('featureResult').innerHTML = "Achievement Unlocked: Miner!";
+        }
+
+        function generateSkinEditor() {
+            document.getElementById('featureResult').innerHTML = "Skin Editor: Customize your skin!";
+        }
+
+        function generateMusicDisc() {
+            document.getElementById('featureResult').innerHTML = "Music Disc: Cat";
+        }
+
+        function generateStructure() {
+            document.getElementById('featureResult').innerHTML = "Structure: Village";
+        }
+
+        function checkItemDurability() {
+            document.getElementById('featureResult').innerHTML = "Item Durability: 75%";
+        }
+
+        function generateRandomSeed() {
+            document.getElementById('featureResult').innerHTML = "Random Seed: " + Math.floor(Math.random() * 10000000000);
+        }
+
+        function generateCreeperFace() {
+            document.getElementById('featureResult').innerHTML = "Creeper Face:  ☠️ ";
+        }
+
+        function generateRecipeForDisaster() {
+            document.getElementById('featureResult').innerHTML = "Recipe: TNT + Flammable Block = BOOM!";
+        }
+
+        function generateMinecraftPet() {
+            document.getElementById('featureResult').innerHTML = "Minecraft Pet: Dog";
+        }
+
+        function generateMinecraftFact() {
+            document.getElementById('featureResult').innerHTML = "Minecraft Fact: Did you know that Minecraft's world generation algorithm is based on noise functions?";
+        }
+
+        function generateRandomTexture() {
+            document.getElementById('featureResult').innerHTML = "Random Texture: Grass Block";
+        }
+
+        function generateQuest() {
+            document.getElementById('featureResult').innerHTML = "Quest: Find the End Portal!";
+        }
+
+        function generateNameTag() {
+            document.getElementById('featureResult').innerHTML = "Name Tag: Steve";
+        }
+
+        function generateAntiCheat() {
+            document.getElementById('featureResult').innerHTML = "Anti-Cheat Generator: Deactivated!";
+        }
+
+        function freeMinecraftCheat() {
+            document.getElementById('featureResult').innerHTML = "Bro, why did you click? Don't cheat!";
         }
     </script>
 </body>
