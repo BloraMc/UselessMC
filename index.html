@@ -131,6 +131,43 @@
             color: #ffdf00;
             text-align: center;
         }
+
+        /* Modal style */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: #1e1e2f;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 60%;
+            text-align: center;
+        }
+
+        .modal-content button {
+            background: #ff69b4;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .modal-content button:hover {
+            background: #ff1493;
+        }
+
     </style>
 </head>
 <body>
@@ -172,6 +209,14 @@
 
     <div id="featureResult" class="feature-result"></div>
 
+    <!-- Modal for Profile -->
+    <div id="profileModal" class="modal">
+        <div class="modal-content">
+            <div id="profileContent"></div>
+            <button onclick="closeProfile()">Close</button>
+        </div>
+    </div>
+
     <script>
         function searchUsername() {
             const username = document.getElementById('username').value || `Player${Math.floor(Math.random() * 10000)}`;
@@ -190,7 +235,7 @@
                 "Considered the greatest Minecraft player - Creator of UselessMC" :
                 bios[Math.floor(Math.random() * bios.length)];
 
-            const fakeStats = `
+            const fakeStats = ` 
                 <div class="fake-stats">
                     <p><strong>Blocks Mined:</strong> ${Math.floor(Math.random() * 100000000) + 180000000}</p>
                     <p><strong>Deaths by Creeper:</strong> ${Math.floor(Math.random() * 200000000) + 850000000}</p>
@@ -201,7 +246,7 @@
             const isBloraMc = /bloramc/i.test(username);
             const creatorLabel = isBloraMc ? "<strong>UselessMC's Creator</strong>" : "";
 
-            resultsDiv.innerHTML = `
+            const profileContent = `
                 <div class="skin">
                     <p>Skin:</p>
                     <img src="https://mc-heads.net/body/${username}" alt="${username}'s Skin">
@@ -221,6 +266,13 @@
                 </div>
                 ${fakeStats}
             `;
+
+            document.getElementById('profileContent').innerHTML = profileContent;
+            document.getElementById('profileModal').style.display = "flex";
+        }
+
+        function closeProfile() {
+            document.getElementById('profileModal').style.display = "none";
         }
 
         function randomSkin() {
